@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="公開情報をもとにしたLayerXプロダクト向け企業リスト" />
+  <title>LayerX Sales Target Navigator</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="hero__inner">
+      <div>
+        <p class="eyebrow">PUBLIC DATA / MANUAL REVIEW REQUIRED</p>
+        <h1>LayerX Sales Target Navigator</h1>
+        <p class="lead">年商規模と公式問い合わせ窓口から、バクラク・Ai Workforce・AgenticSecの提案候補を整理します。</p>
+      </div>
+      <div class="hero__badge"><span id="totalCount">0</span><small>候補企業</small></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="notice" aria-label="利用上の注意">
+      <strong>送信前に必ず確認:</strong> この画面は公開情報の整理用です。問い合わせフォームの営業利用可否、各社規約、特定電子メール法、個人情報の取扱いを確認し、一斉送信は行わないでください。
+    </section>
+
+    <section class="stats" aria-label="集計">
+      <article><span id="filteredCount">0</span><small>表示中</small></article>
+      <article><span id="revenueTotal">0兆円</span><small>表示企業の売上規模合計</small></article>
+      <article><span id="highPriority">0</span><small>優先度A</small></article>
+      <article><span id="verifiedDate">-</span><small>データ確認日</small></article>
+    </section>
+
+    <section class="panel filters" aria-label="絞り込み">
+      <label>企業名・課題
+        <input id="searchInput" type="search" placeholder="例: 製造、経理、契約書" />
+      </label>
+      <label>最低年商
+        <select id="revenueFilter">
+          <option value="0">指定なし</option>
+          <option value="1000000000000">1兆円以上</option>
+          <option value="5000000000000">5兆円以上</option>
+          <option value="10000000000000">10兆円以上</option>
+          <option value="20000000000000">20兆円以上</option>
+        </select>
+      </label>
+      <label>推奨プロダクト
+        <select id="productFilter">
+          <option value="">すべて</option>
+          <option value="バクラク">バクラク</option>
+          <option value="Ai Workforce">Ai Workforce</option>
+          <option value="AgenticSec">AgenticSec</option>
+        </select>
+      </label>
+      <label>業種
+        <select id="industryFilter"><option value="">すべて</option></select>
+      </label>
+      <label>都道府県
+        <select id="prefectureFilter"><option value="">すべて</option></select>
+      </label>
+      <label>優先度
+        <select id="priorityFilter">
+          <option value="">すべて</option>
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+        </select>
+      </label>
+      <div class="filter-actions">
+        <button id="resetButton" class="button button--ghost">リセット</button>
+        <button id="csvButton" class="button">CSVをダウンロード</button>
+      </div>
+    </section>
+
+    <section class="table-wrap panel" aria-label="企業一覧">
+      <table>
+        <thead>
+          <tr>
+            <th>優先度</th><th>企業</th><th>売上規模</th><th>業種</th><th>推奨プロダクト</th><th>窓口</th><th></th>
+          </tr>
+        </thead>
+        <tbody id="companyRows"></tbody>
+      </table>
+      <div id="emptyState" class="empty" hidden>条件に一致する企業がありません。</div>
+    </section>
+  </main>
+
+  <dialog id="detailDialog">
+    <div class="dialog-head">
+      <div><p class="eyebrow">TARGET DETAIL</p><h2 id="detailCompany"></h2></div>
+      <button id="closeDialog" class="icon-button" aria-label="閉じる">×</button>
+    </div>
+    <div id="detailContent"></div>
+  </dialog>
+
+  <footer>公開情報のリサーチ支援ツール。メール送信・フォーム送信機能はありません。</footer>
+  <script src="./app.js" type="module"></script>
+</body>
+</html>
