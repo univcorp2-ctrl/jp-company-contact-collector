@@ -1,0 +1,2 @@
+# jp-company-contact-collector
+日本企業を売上高で抽出し、公式サイト上の法人向け公開メールアドレスと問い合わせフォームURLを安全に収集・CSV化するPython CLI
